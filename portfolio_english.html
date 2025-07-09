@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sébastien DONEUX - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 25%, #0284c7 50%, #0ea5e9 75%, #38bdf8 100%);
+            min-height: 100vh;
+            animation: ocean-wave 20s ease-in-out infinite;
+        }
+
+        @keyframes ocean-wave {
+            0%, 100% { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 25%, #0284c7 50%, #0ea5e9 75%, #38bdf8 100%); }
+            50% { background: linear-gradient(135deg, #075985 0%, #0284c7 25%, #0ea5e9 50%, #38bdf8 75%, #7dd3fc 100%); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0ea5e9, #06b6d4, #0891b2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: ocean-shine 3s linear infinite;
+        }
+
+        @keyframes ocean-shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .language-badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #0ea5e9, #06b6d4);
+            border-radius: 2px;
+        }
+
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .competence-category {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.1);
+        }
+
+        .competence-category h3 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #0ea5e9;
+            padding-bottom: 0.5rem;
+        }
+
+        .competence-list {
+            list-style: none;
+        }
+
+        .competence-list li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .competence-list li::before {
+            content: '🌊';
+            position: absolute;
+            left: 0;
+            color: #0ea5e9;
+        }
+
+        .outils-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .outil-category {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .outil-category h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .experiences-timeline {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .experiences-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #0ea5e9, #06b6d4, #0891b2);
+            animation: ocean-flow 4s ease-in-out infinite;
+        }
+
+        @keyframes ocean-flow {
+            0%, 100% { background: linear-gradient(180deg, #0ea5e9, #06b6d4, #0891b2); }
+            50% { background: linear-gradient(180deg, #06b6d4, #0891b2, #0ea5e9); }
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 80px;
+            background: white;
+            padding: 1.5rem 1.5rem 1.5rem 80px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-marker {
+            position: absolute;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #0ea5e9, #06b6d4);
+            border-radius: 50%;
+            top: 1.5rem;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+            animation: ocean-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes ocean-pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(14, 165, 233, 0.8); }
+        }
+
+        .experience-date {
+            color: #0c4a6e;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .experience-title {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .experience-sector {
+            background: linear-gradient(45deg, #0c4a6e, #0284c7);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+        }
+
+        .experience-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .realisations {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .realisations h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .realisations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .realisations li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .realisations li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .formation-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+            border-left: 4px solid #0ea5e9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formation-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #0ea5e9, #06b6d4, #38bdf8);
+            animation: ocean-wave-top 3s ease-in-out infinite;
+        }
+
+        @keyframes ocean-wave-top {
+            0%, 100% { background: linear-gradient(90deg, #0ea5e9, #06b6d4, #38bdf8); }
+            50% { background: linear-gradient(90deg, #06b6d4, #38bdf8, #0ea5e9); }
+        }
+
+        .formation-year {
+            color: #0c4a6e;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .formation-title {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .formation-school {
+            color: #666;
+            font-style: italic;
+        }
+
+        .passions {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .passion-item {
+            background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 50%, #0ea5e9 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .passion-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: ocean-wave-passion 4s linear infinite;
+        }
+
+        @keyframes ocean-wave-passion {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .passion-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .passion-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .passion-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .passion-why {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-info, .languages {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .competences-grid, .outils-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-item {
+                padding-left: 60px;
+            }
+
+            .passions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #0c4a6e 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="fade-in">
+            <div class="profile-img">SD</div>
+            <h1>Sébastien DONEUX</h1>
+            <p class="subtitle">Electrical Engineering • Project Manager • Electrical and Industrial Infrastructure Expert</p>
+            <div class="languages">
+                <span class="language-badge">🇫🇷 French (Native)</span>
+                <span class="language-badge">🇬🇧 English (C1)</span>
+                <span class="language-badge">🇪🇸 Spanish (B2)</span>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:seb.doneux@gmail.com" class="contact-item">📧 Contact</a>
+                <a href="tel:+33672718709" class="contact-item">📱 Phone</a>
+                <a href="https://www.linkedin.com/in/sébastien-doneux-4a655411a" class="contact-item">💼 LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="section fade-in">
+            <h2>Professional Profile</h2>
+            <div class="about-content">
+                <p><strong class="highlight">Experienced engineer</strong> with over 5 years of expertise in managing complex electrical and industrial infrastructure projects. Specialized in <strong>electrical engineering</strong>, <strong>construction site management</strong> and <strong>team leadership</strong>, with unique experience on national-scale projects such as the <strong>Paris 2024 Olympics</strong> and French nuclear power plant maintenance.</p>
+                <p>My versatility allows me to work both in <strong>design offices</strong> and <strong>field operations</strong>, with recognized adaptability and responsiveness to the most complex technical and logistical challenges.</p>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2>Areas of Expertise</h2>
+            <div class="competences-grid">
+                <div class="competence-category">
+                    <h3>Management & Project Management</h3>
+                    <ul class="competence-list">
+                        <li>Project management and construction site supervision</li>
+                        <li>Real-time team management</li>
+                        <li>Operational management and monitoring</li>
+                        <li>Lean and Agile methodologies</li>
+                        <li>On-site client relations</li>
+                        <li>Construction meeting facilitation</li>
+                    </ul>
+                </div>
+                <div class="competence-category">
+                    <h3>Electrical Engineering</h3>
+                    <ul class="competence-list">
+                        <li>Electrical engineering & electronics</li>
+                        <li>Energy distribution networks</li>
+                        <li>Renewable energy systems</li>
+                        <li>LV/MV electrical installations</li>
+                        <li>Temporary installations</li>
+                        <li>Electrical schematics</li>
+                    </ul>
+                </div>
+                <div class="competence-category">
+                    <h3>Computing & Programming</h3>
+                    <ul class="competence-list">
+                        <li>C, C++, Java, JavaScript, Python</li>
+                        <li>Linux command line</li>
+                        <li>Database management</li>
+                        <li>Web development</li>
+                        <li>Industrial programming (Ladder, GRAFCET)</li>
+                    </ul>
+                </div>
+                <div class="competence-category">
+                    <h3>Engineering & Design</h3>
+                    <ul class="competence-list">
+                        <li>Mechanical design</li>
+                        <li>Structural calculations</li>
+                        <li>Finite element simulation</li>
+                        <li>Installation sizing</li>
+                        <li>Intervention costing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2>Tools & Technologies</h2>
+            <div class="outils-grid">
+                <div class="outil-category">
+                    <h3>🔧 Technical Software</h3>
+                    <ul class="competence-list">
+                        <li>SOLIDWORKS (including ELECTRICAL)</li>
+                        <li>CATIA</li>
+                        <li>AutoCAD</li>
+                        <li>Matlab Simulink</li>
+                        <li>Digsilent Power Factory</li>
+                    </ul>
+                </div>
+                <div class="outil-category">
+                    <h3>💼 Project Management</h3>
+                    <ul class="competence-list">
+                        <li>MS Project</li>
+                        <li>Monday</li>
+                        <li>Aproplan</li>
+                        <li>MS Office (Advanced Excel)</li>
+                    </ul>
+                </div>
+                <div class="outil-category">
+                    <h3>📋 Standards & Certifications</h3>
+                    <ul class="competence-list">
+                        <li>NF-C15-100, C13-100/200</li>
+                        <li>ISO 9001, ISO 14001</li>
+                        <li>HN2 Qualification (Nuclear)</li>
+                        <li>NT 85 114, INB Order</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2>Professional Experience</h2>
+            <div class="experiences-timeline">
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2024 (3 months)</div>
+                    <h3 class="experience-title">DET - Electrical Engineering</h3>
+                    <div class="experience-company">Cleeven Li - Public Building</div>
+                    <div class="experience-sector">Construction / Public Works</div>
+                    <p class="experience-description">
+                        Monitoring the execution of electrical engineering work within a public building project. Management of electrical equipment installations and supervision of HV/LV work.
+                    </p>
+                    <div class="realisations">
+                        <h4>Key achievements:</h4>
+                        <ul>
+                            <li>Construction site monitoring and schedule/cost adjustments</li>
+                            <li>Supervision of temporary high voltage substation installation</li>
+                            <li>Subcontractor and stakeholder planning</li>
+                            <li>Field study review and adjustments</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2023-2024 (12 months)</div>
+                    <h3 class="experience-title">Assistant Project Manager - Paris 2024 Olympics</h3>
+                    <div class="experience-company">Cleeven Li for GL Events - LOXAM</div>
+                    <div class="experience-sector">Events / Temporary Energy</div>
+                    <p class="experience-description">
+                        Assistant Cluster Manager for temporary energy distribution at competition sites in Île-de-France. Complete management of temporary electrical installations including hydrogen generators.
+                    </p>
+                    <div class="realisations">
+                        <h4>Successfully delivered sites:</h4>
+                        <ul>
+                            <li>Golf National</li>
+                            <li>Vélodrome National</li>
+                            <li>Colline d'Elancourt</li>
+                            <li>La Chapelle Arena</li>
+                            <li>Arena Paris-Bercy</li>
+                            <li>Stade Olympique de Vaires-sur-Marne</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2023 (4 months)</div>
+                    <h3 class="experience-title">Operations Director</h3>
+                    <div class="experience-company">EC&T</div>
+                    <div class="experience-sector">Water Treatment</div>
+                    <p class="experience-description">
+                        Operational management for sanitary water treatment and cathodic protection of tanks. Complete project management for maintenance and R&D development.
+                    </p>
+                    <div class="realisations">
+                        <h4>Key contributions:</h4>
+                        <ul>
+                            <li>Development of new cathodic protection prototypes</li>
+                            <li>Installation plan creation using SOLIDWORKS</li>
+                            <li>Contract management and client relations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2019-2022 (3 years)</div>
+                    <h3 class="experience-title">Operations Business Manager</h3>
+                    <div class="experience-company">ONET TECHNOLOGIES CN</div>
+                    <div class="experience-sector">Nuclear Power Plant Maintenance</div>
+                    <p class="experience-description">
+                        Intervention manager for French 900 MW nuclear power plants. Non-destructive testing and participation in the "Grand Carénage" project. HN2 qualification.
+                    </p>
+                    <div class="realisations">
+                        <h4>Outstanding results 2020-2021:</h4>
+                        <ul>
+                            <li>Maximum client satisfaction</li>
+                            <li>No schedule overruns</li>
+                            <li>No work accidents with time off</li>
+                            <li>Exemplary COVID-19 crisis management</li>
+                            <li>Revenue exceeding targets</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2018 (6 months)</div>
+                    <h3 class="experience-title">Electrical Engineer - SMARTGRID Project</h3>
+                    <div class="experience-company">SABELLA</div>
+                    <div class="experience-sector">Marine Renewable Energy</div>
+                    <p class="experience-description">
+                        Final study mission and Master's Thesis writing. Development of a SMARTGRID project in the marine renewable energy sector. Study of island electrical distribution networks and development of innovative technologies in development phase.
+                    </p>
+                    <div class="realisations">
+                        <h4>Key achievements:</h4>
+                        <ul>
+                            <li>Impact study of tidal turbines on island networks</li>
+                            <li>Machine and island network modeling</li>
+                            <li>Energy management system development</li>
+                            <li>Production forecasting methodologies</li>
+                            <li>Network sizing and energy storage</li>
+                            <li>Functional demonstrator realization</li>
+                            <li>HV/LV transformer modeling</li>
+                        </ul>
+                    </div>
+                    <div class="realisations">
+                        <h4>Tools used:</h4>
+                        <ul>
+                            <li>Matlab Simulink</li>
+                            <li>Digsilent Power Factory</li>
+                            <li>SolidWorks Electrical</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2017 (3 months)</div>
+                    <h3 class="experience-title">Internship - Process Engineering</h3>
+                    <div class="experience-company">Hydrométal - Belgium</div>
+                    <div class="experience-sector">Chemical Industry / Industrial Automation</div>
+                    <p class="experience-description">
+                        Internship focused on functional analysis of the wastewater treatment plant in a non-ferrous metal recycling facility. SEVESO II classified chemical site with strict environmental discharge constraints.
+                    </p>
+                    <div class="realisations">
+                        <h4>Key achievements:</h4>
+                        <ul>
+                            <li>Complete functional analysis of wastewater treatment plant</li>
+                            <li>Chemical process and automation system study</li>
+                            <li>Station operation documentation</li>
+                            <li>Critical process points identification</li>
+                            <li>Continuous improvement proposals</li>
+                            <li>Detailed station layout</li>
+                            <li>Complete automation system description</li>
+                        </ul>
+                    </div>
+                    <div class="realisations">
+                        <h4>Skills developed:</h4>
+                        <ul>
+                            <li>Industrial automation programming</li>
+                            <li>Software engineering</li>
+                            <li>Chemical processes</li>
+                            <li>Hydrometallurgy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-marker"></div>
+                    <div class="experience-date">2016 (2 months)</div>
+                    <h3 class="experience-title">Internship - Business Engineer</h3>
+                    <div class="experience-company">ADRET</div>
+                    <div class="experience-sector">Electrical Engineering / HVAC</div>
+                    <p class="experience-description">
+                        Internship in design office specialized in building engineering. Creation of tertiary installation plans for major real estate projects with sizing according to current standards.
+                    </p>
+                    <div class="realisations">
+                        <h4>Key achievements:</h4>
+                        <ul>
+                            <li>Architectural electrical schematics</li>
+                            <li>Electrical distribution panel schematics</li>
+                            <li>VDI schematics (Voice, Data, Images)</li>
+                            <li>Thermal circuit schematics</li>
+                            <li>Water drainage system schematics</li>
+                            <li>Boiler room schematics</li>
+                            <li>Electrical protection sizing (NF C15-100)</li>
+                        </ul>
+                    </div>
+                    <div class="realisations">
+                        <h4>Skills developed:</h4>
+                        <ul>
+                            <li>Electrotechnical schematics</li>
+                            <li>Fluid/electrical installation design</li>
+                            <li>Building standards</li>
+                            <li>Execution plan development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2>Education & Qualifications</h2>
+            <div class="formation-item">
+                <div class="formation-year">2018</div>
+                <h3 class="formation-title">Master of Science Control in Smart Grids and Distributed Generation</h3>
+                <div class="formation-school">UPV/EHU Donostia/San Sebastian, Spain (Double degree)</div>
+            </div>
+            <div class="formation-item">
+                <div class="formation-year">2018</div>
+                <h3 class="formation-title">General Engineering Degree</h3>
+                <div class="formation-school">ESTIA, Bidart (64)</div>
+            </div>
+            <div class="formation-item">
+                <div class="formation-year">2014</div>
+                <h3 class="formation-title">Higher Technician Certificate in Home Automation</h3>
+                <div class="formation-school">Paul Langevin High School, La Seyne-sur-mer (83)</div>
+            </div>
+            <div class="formation-item">
+                <div class="formation-year">2012</div>
+                <h3 class="formation-title">Professional Baccalaureate ELEEC</h3>
+                <div class="formation-school">Electrotechnics, Energy and Communicating Equipment<br>Alpes et Durance High School, Embrun (05)</div>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2>Interests & Hobbies</h2>
+            <div class="passions">
+                <div class="passion-item">
+                    <div class="passion-icon">⛵</div>
+                    <h3 class="passion-title">Sailing</h3>
+                    <p class="passion-why">Nature • Technique</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Assistant Instructor Diploma (2010)</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🏄‍♂️</div>
+                    <h3 class="passion-title">Surfing</h3>
+                    <p class="passion-why">Ocean • Freedom</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🪁</div>
+                    <h3 class="passion-title">Kitesurfing</h3>
+                    <p class="passion-why">Wind • Adrenaline</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🎿</div>
+                    <h3 class="passion-title">Alpine Skiing</h3>
+                    <p class="passion-why">Nature • Gliding</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Since 2005</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🏂</div>
+                    <h3 class="passion-title">Snowboarding</h3>
+                    <p class="passion-why">Powder • Style</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🥾</div>
+                    <h3 class="passion-title">Hiking</h3>
+                    <p class="passion-why">Mountains • Discovery</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🎵</div>
+                    <h3 class="passion-title">Music</h3>
+                    <p class="passion-why">Creativity • Expression</p>
+                </div>
+                <div class="passion-item">
+                    <div class="passion-icon">🎸</div>
+                    <h3 class="passion-title">Guitar</h3>
+                    <p class="passion-why">Melody • Harmony</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Light parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach((section, index) => {
+                const rate = scrolled * -0.05;
+                section.style.transform = `translateY(${rate}px)`;
+            });
+        });
+
+        // Progressive entry animation
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in')[0].classList.add('visible');
+        }, 200);
+    </script>
+</body>
+</html>
+        
